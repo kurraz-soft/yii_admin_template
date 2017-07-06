@@ -11,6 +11,7 @@ namespace app\commands;
 
 use app\models\User;
 use yii\console\Controller;
+use yii\helpers\VarDumper;
 
 class UserController extends Controller
 {
@@ -19,22 +20,26 @@ class UserController extends Controller
      *
      * @param string $login
      * @param string $password
+     * @param string $roles roles separated by comma
      * @param string|null $name
      * @throws \ErrorException
      * @throws \yii\base\Exception
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionNew($login, $password, $name = null)
+    public function actionNew($login, $password, $roles = '', $name = null)
     {
         if(!$name) $name = $login;
 
+        $roles = explode(',', $roles);
+
         $user = new User();
+        $user->setRoles($roles);
         $user->login = $login;
-        $user->changePassword($password);
+        $user->password = $password;
         $user->name = $name;
         if(!$user->save())
         {
-            throw new \ErrorException($user->errors);
+            throw new \ErrorException(VarDumper::dumpAsString($user->errors));
         }
 
         echo "Done!\n";

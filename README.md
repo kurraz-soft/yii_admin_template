@@ -46,6 +46,7 @@ INSTALLATION
 Run
 ```
 composer install
+./yii rbac init
 ```
 
 CONFIGURATION
@@ -77,6 +78,10 @@ DB_PASS=123456
 ./yii migrate
 ```
 
+### Create admin users
+```
+./yii user/new <login> <password> <role:admin|manager>
+```
 
 TESTING
 -------
