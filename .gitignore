@@ -28,9 +28,9 @@ phpunit.phar
 /phpunit.xml
 
 .env
-/web/upload
+/web/upload/*
 .vagrant
 Vagrantfile
-/web/upload
-/web/assets
+/web/assets/*
 .log
+/rbac/*

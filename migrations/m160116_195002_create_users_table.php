@@ -10,7 +10,7 @@ class m160116_195002_create_users_table extends Migration
         $this->createTable('users',[
             'id' => $this->primaryKey(),
             'name' => $this->string(255)->notNull(),
-            'login' => $this->string(255)->notNull(),
+            'login' => $this->string(255)->notNull()->unique(),
             'password_hash' => $this->string(255)->notNull(),
         ]);
     }
