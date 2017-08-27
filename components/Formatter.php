@@ -98,7 +98,8 @@ class Formatter
         return intval($interval->format('%R%a'));
     }
 
-    static public function get_date($date,$first,$second,$third){
+    static public function get_date($date,$first,$second,$third)
+    {
         if((($date % 10) > 4 && ($date % 10) < 10) || ($date > 10 && $date < 20)){
             return $second;
         }
