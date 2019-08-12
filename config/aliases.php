@@ -5,4 +5,6 @@ return [
     '@logout' => '/auth/logout',
     '@login' => '/auth/login',
     '@adminPanel' => '/admin/dashboard/index',
+    '@bower' => '@vendor/bower-asset',
+    '@npm' => '@vendor/npm-asset',
 ];

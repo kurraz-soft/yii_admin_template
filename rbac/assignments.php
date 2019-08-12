@@ -4,6 +4,6 @@ return [
         'admin',
     ],
     2 => [
-        'manager',
+        'admin',
     ],
 ];

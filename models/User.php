@@ -22,7 +22,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     const ROLE_ADMIN = 'admin';
 
     public $password;
-    public $_roles;
+    public $_roles = [];
 
     /**
      * @inheritdoc

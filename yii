@@ -12,7 +12,7 @@ defined('YII_DEBUG') or define('YII_DEBUG', true);
 
 require(__DIR__ . '/vendor/autoload.php');
 
-$dotenv = new \Dotenv\Dotenv(__DIR__);
+$dotenv = \Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
 require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
