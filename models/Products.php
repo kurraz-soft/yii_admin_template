@@ -108,7 +108,7 @@ class Products extends \yii\db\ActiveRecord
         $this->tmp_id = Yii::$app->user->id;
 
         $this->on(static::EVENT_AFTER_INSERT,function(Event $event){
-            ProductImages::updateAll(['product_id' => $this->id],['tmp_id' => $this->tmp_id]);
+            ProductImages::updateAll(['product_id' => $this->id],['tmp_id' => $this->tmp_id, 'product_id' => null]);
         });
     }
 

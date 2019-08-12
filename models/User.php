@@ -40,7 +40,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['login','name'], 'required'],
             [['password'], 'required', 'on' => 'create'],
-            [['password'], 'string', 'min' => 6, 'max' => 255],
+            [['password'], 'string', 'min' => 5, 'max' => 255],
             [['name', 'login'], 'string', 'max' => 255],
             [['roles'],'safe'],
         ];
@@ -87,6 +87,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
+    /**
+     * @param $username
+     * @return null|User
+     */
     static public function findByUsername($username)
     {
         return static::find()->where(['login' => $username])->one();
@@ -141,7 +145,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        return Yii::$app->security->generatePasswordHash($this->login);
+        return md5($this->id . $this->password_hash);
     }
 
     /**
@@ -154,7 +158,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return true;
+        return $authKey === md5($this->id . $this->password_hash);
     }
 
     public function validatePassword($pass)

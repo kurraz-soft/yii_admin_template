@@ -2,7 +2,6 @@
 /**
  * Created by
  * User: Kurraz
- * Date: 19.01.2015
  */
 
 namespace app\components;
@@ -12,32 +11,7 @@ class Formatter
 {
     static public function money($m)
     {
-        $str = '';
-
-        $m = floatval($m);
-
-        $v = $m * 10000;
-
-        $g = floor($v / 10000);
-        $v  = ($v - $g * 10000);
-        $sil = floor($v / 100);
-        $v -= $sil * 100;
-        $copper = $v;
-
-        if($g > 0)
-        {
-            $str .= number_format((int)$g,0,'.',' ') . ' <span class="coin-g">G</span> ';
-        }
-        if($sil > 0)
-        {
-            $str .= $sil . ' <span class="coin-s">S</span> ';
-        }
-        if($copper > 0 || $m == 0)
-        {
-            $str .= floor($copper) . ' <span class="coin-c">C</span> ';
-        }
-
-        return $str;
+        return number_format($m,2,'.',' ');
     }
 
     static public function getNewDateInterval($str_date)
@@ -98,7 +72,8 @@ class Formatter
         return intval($interval->format('%R%a'));
     }
 
-    static public function get_date($date,$first,$second,$third){
+    static public function get_date($date,$first,$second,$third)
+    {
         if((($date % 10) > 4 && ($date % 10) < 10) || ($date > 10 && $date < 20)){
             return $second;
         }
